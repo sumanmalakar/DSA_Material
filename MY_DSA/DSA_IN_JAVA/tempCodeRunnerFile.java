@@ -1,0 +1,2 @@
+
+    LinkedList list = new LinkedList();

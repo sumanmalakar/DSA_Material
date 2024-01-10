@@ -1,0 +1,111 @@
+MongoDb commands for Databases
+View all databases
+show dbs
+
+create a new or switch databases
+use dbName
+
+View current databases
+db
+
+Delete Database
+db.dropDatabase()
+
+MongoDb commands for Collections
+show Collections
+show collections
+
+
+Create a collections named 'comments'
+db.createCollection('comments')
+db.createCollection('suman') // another example
+
+Delete a collections named 'suman'
+db.<collection name>.drop()
+db.suman.drop() //example
+
+
+MongoDb commands for Rows
+Show all Rows in a collection
+db.comments.find() // collection name = 'comments' 
+db.suman.find() // collection name  = 'suman'
+
+Find the first row matching the object
+db.comments.findOne({'name':'suman'})
+
+
+Show all Rows in a Collections (Prettified)
+ db.comments.find().pretty()
+
+
+Insert One/Single Rows (collection name = 'comments')
+db.comments.insert({
+  'name':'suman',
+  'lang':'JavaScript',
+  'member_since':5
+})
+
+Insert Multiple Rows
+db.comments.insertMany([
+  {
+  'name':'suman',
+  'lang':'JavaScript',
+  'member_since':5
+},
+  {
+  'name':'aman',
+  'lang':'Python',
+  'member_since':6
+},  {
+  'name':'ram',
+  'lang':'Java',
+  'member_since':15
+}, ])
+
+Show Rows by specific key in a collection
+db.comments.find({'name':'ram'}) // ram wala row aayega
+db.comments.find({'lang':'Java'}) // java wala row ...
+
+
+ 
+ Search in a MongoDb Database
+db.comments.find({'lang':'Python'})
+
+
+Limit the number of rows in output
+db.comments.find().limit(2)
+
+Count the number of rows in the output
+db.comments.find().count()
+db.comments.find({'name':'suman'}).count()
+
+Find by sorted order (increasing order)
+db.comments.find().sort({member_since:1}).pretty()
+
+Find by sorted order (Decreasing order)
+db.comments.find().sort({member_since: -1}).pretty()
+
+
+Update a row
+db.comments.update({name:'suman'},
+ {
+  'name':'suman',
+  'lang':'JavaScript/ typeScript',
+  'member_since':50
+}, {upsert: true} )
+
+
+Mongodb Increment Operator
+db.comments.update({name:'suman'},{
+$inc:{
+  member_since:2
+}})
+
+Mongodb Rename Operator
+db.comments.update({name:'suman'},{
+$inc:{
+  member_since:'member'
+}})
+
+Delete Row
+db.comments.remove({name:'suman'})
